@@ -13,7 +13,7 @@ const DEFAULT_OPTIONS = {
 
 export type AccountResponse = {
   account?: Account;
-  accountRoles?: Array<String>;
+  accountRoles?: Array<string>;
 };
 
 /**
@@ -75,8 +75,8 @@ function sendQuery (
  * @property {String} params.accountId
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-account
  */
-function getAccount (queryOptions, params): Promise<AccountResponse>{
-  console.log("Querying for account details...::::>>>>>>>");
+function getAccount (queryOptions, params): Promise<AccountResponse> {
+  console.log('Querying for account details...::::>>>>>>>')
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(
