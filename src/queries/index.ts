@@ -11,6 +11,11 @@ const DEFAULT_OPTIONS = {
   timeoutLimit: 5000
 }
 
+export type AccountResponse = {
+  account?: Account;
+  accountRoles?: Array<String>;
+};
+
 /**
  * wrapper function of queries
  * @param {Object} queryOptions
@@ -70,7 +75,8 @@ function sendQuery (
  * @property {String} params.accountId
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-account
  */
-function getAccount (queryOptions, params) {
+function getAccount (queryOptions, params): Promise<AccountResponse>{
+  console.log("Querying for account details...::::>>>>>>>");
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(
