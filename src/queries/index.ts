@@ -3,6 +3,7 @@ import queryHelper from '../queryHelper'
 import * as pbResponse from '../proto/qry_responses_pb'
 import { reverseEnum } from '../util'
 import validate from '../validation'
+import * as Interfaces from '../interfaces'
 
 const DEFAULT_OPTIONS = {
   privateKey: '',
@@ -10,11 +11,6 @@ const DEFAULT_OPTIONS = {
   queryService: null,
   timeoutLimit: 5000
 }
-
-export type AccountResponse = {
-  account?: Account;
-  accountRoles?: Array<string>;
-};
 
 /**
  * wrapper function of queries
@@ -75,7 +71,7 @@ function sendQuery (
  * @property {String} params.accountId
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-account
  */
-function getAccount (queryOptions, params): Promise<AccountResponse> {
+function getAccount (queryOptions, params): Promise<Interfaces.AccountResponse> {
   console.log('Querying for account details...::::>>>>>>>')
   return sendQuery(
     queryOptions,
@@ -103,7 +99,7 @@ function getAccount (queryOptions, params): Promise<AccountResponse> {
  * @property {String} params.accountId
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-account
  */
-function getRawAccount (queryOptions, params) {
+function getRawAccount (queryOptions, params): Promise<Interfaces.AccountResponse> {
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(
@@ -130,7 +126,7 @@ function getRawAccount (queryOptions, params) {
  * @property {String} params.accountId
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-signatories
  */
-function getSignatories (queryOptions, params) {
+function getSignatories (queryOptions, params): Promise<Interfaces.SignatoriesResponse> {
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(
@@ -157,7 +153,7 @@ function getSignatories (queryOptions, params) {
  * @property {String[]} params.txHashesList
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-transactions
  */
-function getTransactions (queryOptions, params) {
+function getTransactions (queryOptions, params): Promise<Interfaces.TransactionsResponse> {
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(
@@ -182,7 +178,7 @@ function getTransactions (queryOptions, params) {
  * @param {Object} queryOptions
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-pending-transactions
  */
-function getPendingTransactions (queryOptions, { pageSize, firstTxHash }) {
+function getPendingTransactions (queryOptions, { pageSize, firstTxHash }): Promise<Interfaces.PendingTransactionsPageResponse> {
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(
@@ -212,7 +208,7 @@ function getPendingTransactions (queryOptions, { pageSize, firstTxHash }) {
  * @param {Object} queryOptions
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-pending-transactions
  */
-function getRawPendingTransactions (queryOptions) {
+function getRawPendingTransactions (queryOptions): Promise<Interfaces.PendingTransactionsPageResponse> {
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(
@@ -240,7 +236,7 @@ function getRawPendingTransactions (queryOptions) {
  * @property {String | undefined} params.firstTxHash
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-account-transactions
  */
-function getAccountTransactions (queryOptions, { accountId, pageSize, firstTxHash = undefined }) {
+function getAccountTransactions (queryOptions, { accountId, pageSize, firstTxHash = undefined }): Promise<Interfaces.TransactionsPageResponse> {
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(
@@ -276,7 +272,7 @@ function getAccountTransactions (queryOptions, { accountId, pageSize, firstTxHas
  * @property {String | undefined} params.firstTxHash
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-account-asset-transactions
  */
-function getAccountAssetTransactions (queryOptions, { accountId, assetId, pageSize, firstTxHash }) {
+function getAccountAssetTransactions (queryOptions, { accountId, assetId, pageSize, firstTxHash }): Promise<Interfaces.TransactionsPageResponse> {
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(
@@ -310,7 +306,7 @@ function getAccountAssetTransactions (queryOptions, { accountId, assetId, pageSi
  * @property {String} params.accountId
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-account-assets
  */
-function getAccountAssets (queryOptions, { accountId, pageSize, firstAssetId }) {
+function getAccountAssets (queryOptions, { accountId, pageSize, firstAssetId }): Promise<Interfaces.AccountAssetResponse> {
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(
@@ -345,7 +341,7 @@ function getAccountAssets (queryOptions, { accountId, pageSize, firstAssetId }) 
  * @property {String} params.writer
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-account-detail
  */
-function getAccountDetail (queryOptions, { accountId, key, writer, pageSize, paginationWriter, paginationKey }) {
+function getAccountDetail (queryOptions, { accountId, key, writer, pageSize, paginationWriter, paginationKey }): Promise<Interfaces.AccountDetailResponse> {
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(
@@ -383,7 +379,7 @@ function getAccountDetail (queryOptions, { accountId, key, writer, pageSize, pag
  * @property {String} params.assetId
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-asset-info
  */
-function getAssetInfo (queryOptions, params) {
+function getAssetInfo (queryOptions, params): Promise<Interfaces.Asset> {
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(
@@ -408,7 +404,7 @@ function getAssetInfo (queryOptions, params) {
  * @param {Object} queryOptions
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-peers
  */
-function getPeers (queryOptions) {
+function getPeers (queryOptions): Promise<Interfaces.PeersResponse> {
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(
@@ -432,7 +428,7 @@ function getPeers (queryOptions) {
  * @param {Object} queryOptions
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-roles
  */
-function getRoles (queryOptions) {
+function getRoles (queryOptions): Promise<Interfaces.RolesResponse> {
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(
@@ -458,7 +454,7 @@ function getRoles (queryOptions) {
  * @property {Number} params.roleId
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-role-permissions
  */
-function getRolePermissions (queryOptions, params) {
+function getRolePermissions (queryOptions, params): Promise<Interfaces.RolePermissionsResponse> {
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(
@@ -485,7 +481,7 @@ function getRolePermissions (queryOptions, params) {
  * @property {Number} params.height
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-block
  */
-function getBlock (queryOptions, params) {
+function getBlock (queryOptions, params): Promise<Interfaces.BlockResponse> {
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(
@@ -512,7 +508,7 @@ function getBlock (queryOptions, params) {
  * @property {Number} params.txHash
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-block
  */
-function getEngineReceipts (queryOptions, params) {
+function getEngineReceipts (queryOptions, params): Promise<Interfaces.EngineReceiptsResponse> {
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(

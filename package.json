@@ -1,11 +1,11 @@
 {
   "name": "iroha-helpers-ts",
-  "version": "0.9.1-ss",
+  "version": "0.9.2-ss",
   "description": "Some helpers function for transaction/query generation for Hyperledger Iroha",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:hyperledger/iroha-javascript.git"
+    "url": "git+ssh://git@github.com:Atlas365SmartSolutions/iroha-javascript.git"
   },
   "keywords": [
     "iroha",
@@ -17,9 +17,9 @@
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/hyperledger/iroha-javascript/issues"
+    "url": "https://github.com/Atlas365SmartSolutions/iroha-javascript/issues"
   },
-  "homepage": "https://github.com/hyperledger/iroha-javascript#readme",
+  "homepage": "https://github.com/Atlas365SmartSolutions/iroha-javascript#readme",
   "scripts": {
     "build": "npm run clean && tsc && npm run copyProto",
     "clean": "npx shx rm -rf lib",
