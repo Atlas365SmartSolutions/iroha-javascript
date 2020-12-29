@@ -115,8 +115,8 @@ function sendTransactions (txs, txClient, timeoutLimit, requiredStatusesStr = [
 
         Promise.all(requests)
           .then(res => {
-            const status = res
-              .map(r => reverseEnum(TxStatus)[r.tx.getTxStatus()])
+            const status = res.map(r => reverseEnum(TxStatus)[r.tx.getTxStatus()])[0]
+            const hash = res.map(r => r.tx.getTxHash())[0]
 
             return res.some(r => r.error)
               ? reject(
@@ -124,7 +124,7 @@ function sendTransactions (txs, txClient, timeoutLimit, requiredStatusesStr = [
                   `Command response error: expected=${requiredStatusesStr}, actual=${status}`
                 )
               )
-              : resolve()
+              : resolve({ txHash: hash, status: status })
           })
       })
     })

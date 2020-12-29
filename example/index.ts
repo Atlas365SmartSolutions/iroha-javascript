@@ -37,69 +37,15 @@ queries.fetchCommits(
 )
 
 Promise.all([
-  commands.setAccountDetail({
+  commands.addAssetQuantity({
     privateKeys: [adminPriv],
     creatorAccountId: 'admin@test',
     quorum: 1,
     commandService,
     timeoutLimit: 5000
   }, {
-    accountId: 'admin@test',
-    key: 'jason',
-    value: 'statham'
-  }),
-  queries.getAccount({
-    privateKey: adminPriv,
-    creatorAccountId: 'admin@test',
-    queryService,
-    timeoutLimit: 5000
-  }, {
-    accountId: 'admin@test'
-  }),
-  queries.getAccountDetail({
-    privateKey: adminPriv,
-    creatorAccountId: 'admin@test',
-    queryService,
-    timeoutLimit: 5000
-  }, {
-    accountId: 'admin@test',
-    key: 'jason',
-    writer: 'admin@test',
-    pageSize: 1,
-    paginationKey: 'jason',
-    paginationWriter: 'admin@test'
-  }),
-  queries.getSignatories({
-    privateKey: adminPriv,
-    creatorAccountId: 'admin@test',
-    queryService,
-    timeoutLimit: 5000
-  }, {
-    accountId: 'admin@test'
-  }),
-  queries.getRoles({
-    privateKey: adminPriv,
-    creatorAccountId: 'admin@test',
-    queryService,
-    timeoutLimit: 5000
-  }),
-  queries.getAccount({
-    privateKey: adminPriv,
-    creatorAccountId: 'admin@test',
-    queryService,
-    timeoutLimit: 5000
-  }, {
-    accountId: 'admin@test'
-  }),
-  queries.getAccountTransactions({
-    privateKey: adminPriv,
-    creatorAccountId: 'admin@test',
-    queryService,
-    timeoutLimit: 5000
-  }, {
-    accountId: 'admin@test',
-    pageSize: 5,
-    firstTxHash: undefined
+    assetId: 'coin#test',
+    amount: '10'
   })
 ])
   .then(a => console.log(a))
