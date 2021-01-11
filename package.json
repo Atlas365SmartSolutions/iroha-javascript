@@ -1,6 +1,6 @@
 {
   "name": "iroha-helpers-ts",
-  "version": "0.9.5-ss",
+  "version": "0.9.6-ss",
   "description": "Some helpers function for transaction/query generation for Hyperledger Iroha",
   "main": "lib/index.js",
   "repository": {
