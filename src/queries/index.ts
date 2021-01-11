@@ -72,7 +72,6 @@ function sendQuery (
  * @link https://iroha.readthedocs.io/en/master/develop/api/queries.html#get-account
  */
 function getAccount (queryOptions, params): Promise<Interfaces.AccountResponse> {
-  console.log('Querying for account details...::::>>>>>>>')
   return sendQuery(
     queryOptions,
     queryHelper.addQuery(
